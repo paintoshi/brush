@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BRUSH Price</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="description" content="PaintSwap Price">
+  <meta name="keywords" content="paintswap,brush,ftm,amm">
+  <meta name="author" content="Paintoshi">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<style>
+  html, body, .container {
+    height: 100%;
+    background-color: black;
+    color: #a49ddc;
+    font-size: 16px;
+    font-family: serif;
+  }
+  .container {
+      position: relative;
+      text-align: center;
+  }
+  .container > div {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin-top: -9px;
+  }
+  .big {
+    font-size: xx-large;
+    line-height: 1.5;
+    margin-right: 10px;
+    color: #9dc9d6;
+  }
+
+  .header {
+    font-size: 50px;
+    color: #58d668;
+  }
+
+  #table {
+   border-collapse: collapse;
+   display: inline;
+  }
+
+  @media only screen and (min-width: 600px) {
+    .container > div {
+      top: 5%;
+      margin-top: -9px;
+    }
+  @media only screen and (min-width: 1200px) {
+    .container > div {
+      top: 30%;
+      margin-top: -9px;
+    }
+  }
+</style>
+
+<body>
+    <div class="container">
+      <div>
+        <span class="header">PaintSwap BRUSH</span><br /><br />
+        <span class="refreshed"></span><br /><br />
+        <table id="table">
+          <th id="table1"></th>
+          <tr>
+            <td style="text-align: right;">
+              <span class="big">USD</span>
+            </td>
+            <td>
+              <span class="brush big"></span><br />
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: right;">
+              <span class="big">FTM</span>
+            </td>
+            <td>
+              <span class="ftm big"></span><br />
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: right;">
+              <span class="big">SUPPLY</span>
+            </td>
+            <td>
+              <span class="mc big"></span><br />
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function timeConverter(UNIX_timestamp){
+        const a = new Date(UNIX_timestamp * 1000)
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        const year = a.getFullYear()
+        const month = months[a.getMonth()]
+        const date = a.getDate()
+        const hour = ('0' + a.getHours()).slice(-2)
+        const min = ('0' + a.getMinutes()).slice(-2)
+        const sec = ('0' + a.getSeconds()).slice(-2)
+        const time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec
+        return time
+      }
+      function checkPrice() {
+        $.getJSON('https://api.paintswap.finance/tokens/0x85dec8c4B2680793661bCA91a8F129607571863d', function(data) {
+          const refreshed = `Last Updated: ${timeConverter(data.updated_at)}`
+          const brush = `$${parseFloat(data.token.price).toFixed(6)}`
+          const ftm = parseFloat(data.token.price_FTM).toFixed(6)
+          $(".refreshed").html(refreshed);
+          $(".brush").html(brush);
+          $(".ftm").html(ftm);
+        });
+        $.getJSON('https://api.paintswap.finance/supply', function(data) {
+          const mc = `$${parseFloat(data.circulating_supply_usd).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`
+          $(".mc").html(mc);
+        });
+      }
+      checkPrice()
+      setInterval(checkPrice,10000);
+    </script>
+</body>
+</html>
