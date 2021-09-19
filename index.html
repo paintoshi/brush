@@ -50,6 +50,7 @@
   #table {
    border-collapse: collapse;
    display: inline;
+   margin-left: 40px;
   }
 
   #table td {
@@ -72,13 +73,13 @@
 <body>
     <div class="container">
       <div>
-        <span class="header"><a href="https://paintswap.finance/" target="_blank">PaintSwap BRUSH</a></span><br /><br />
+        <span class="header"><a href="https://paintswap.finance/" target="_blank">PaintSwap</a></span><br /><br />
         <span class="refreshed"></span><br /><br />
         <table id="table">
           <th id="table1"></th>
           <tr>
             <td style="text-align: right;">
-              <span class="big">USD</span>
+              <span class="big">BRUSH / USD</span>
             </td>
             <td style="text-align: left;">
               <span class="brush big"></span><br />
@@ -86,10 +87,18 @@
           </tr>
           <tr>
             <td style="text-align: right;">
-              <span class="big">FTM</span>
+              <span class="big">BRUSH / FTM</span>
             </td>
             <td style="text-align: left;">
               <span class="ftm big"></span><br />
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: right;">
+              <span class="big">FTM / USD</span>
+            </td>
+            <td style="text-align: left;">
+              <span class="ftm-usd big"></span><br />
             </td>
           </tr>
           <tr>
@@ -119,12 +128,14 @@
       }
       function checkPrice() {
         $.getJSON('https://api.paintswap.finance/tokens/0x85dec8c4B2680793661bCA91a8F129607571863d', function(data) {
-          const refreshed = `Last Updated: ${timeConverter(data.updated_at)}`
-          const brush = `$${parseFloat(data.token.price).toFixed(6)}`
-          const ftm = parseFloat(data.token.price_FTM).toFixed(6)
+          const refreshed = `Last Updated: ${timeConverter(data.updated_at)}`;
+          const brush = parseFloat(data.token.price);
+          const ftm = parseFloat(data.token.price_FTM);
+          const ftmUsd = ftm > 0 ? parseFloat(brush/ftm) : 0;
           $(".refreshed").html(refreshed);
-          $(".brush").html(brush);
-          $(".ftm").html(ftm);
+          $(".brush").html(`$${brush.toFixed(6)}`);
+          $(".ftm").html(ftm.toFixed(6));
+          $(".ftm-usd").html(`$${ftmUsd.toFixed(6)}`);
         });
         $.getJSON('https://api.paintswap.finance/supply', function(data) {
           const mc = `$${parseFloat(data.circulating_supply_usd).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`
