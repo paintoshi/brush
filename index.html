@@ -34,11 +34,19 @@
       position: absolute;
       left: 0;
       right: 0;
+      top: 1%;
       margin-top: -9px;
   }
   .big {
-    font-size: xx-large;
-    line-height: 1.5;
+    font-size: 30px;
+    line-height: 1.4;
+    margin-right: 10px;
+    color: #9dc9d6;
+  }
+
+  .medium {
+    font-size: 15px;
+    line-height: 1.4;
     margin-right: 10px;
     color: #9dc9d6;
   }
@@ -50,17 +58,46 @@
   #table {
    border-collapse: collapse;
    display: inline;
-   margin-left: 40px;
   }
 
   #table td {
     padding-right: 10px;
   }
 
+  @media only screen and (min-width: 510px) {
+    .container > div {
+      top: 4%;
+      margin-top: -9px;
+    }
+    .big {
+      font-size: 35px;
+      line-height: 1.4;
+      margin-right: 10px;
+      color: #9dc9d6;
+    }
+    .medium {
+      font-size: 25px;
+      line-height: 1.4;
+      margin-right: 10px;
+      color: #9dc9d6;
+    }
+
   @media only screen and (min-width: 600px) {
     .container > div {
-      top: 5%;
+      top: 7%;
       margin-top: -9px;
+    }
+    .big {
+      font-size: 40px;
+      line-height: 1.5;
+      margin-right: 10px;
+      color: #9dc9d6;
+    }
+    .medium {
+      font-size: 30px;
+      line-height: 1.5;
+      margin-right: 10px;
+      color: #9dc9d6;
     }
   @media only screen and (min-width: 1200px) {
     .container > div {
@@ -79,7 +116,7 @@
           <th id="table1"></th>
           <tr>
             <td style="text-align: right;">
-              <span class="big">BRUSH / USD</span>
+              <span class="medium">BRUSH / USD</span>
             </td>
             <td style="text-align: left;">
               <span class="brush big"></span><br />
@@ -87,7 +124,7 @@
           </tr>
           <tr>
             <td style="text-align: right;">
-              <span class="big">BRUSH / FTM</span>
+              <span class="medium">BRUSH / FTM</span>
             </td>
             <td style="text-align: left;">
               <span class="ftm big"></span><br />
@@ -95,7 +132,7 @@
           </tr>
           <tr>
             <td style="text-align: right;">
-              <span class="big">FTM / USD</span>
+              <span class="medium">FTM / USD</span>
             </td>
             <td style="text-align: left;">
               <span class="ftm-usd big"></span><br />
@@ -103,7 +140,7 @@
           </tr>
           <tr>
             <td style="text-align: right;">
-              <span class="big">SUPPLY</span>
+              <span class="medium">SUPPLY</span>
             </td>
             <td style="text-align: left;">
               <span class="mc big"></span><br />
@@ -138,7 +175,7 @@
           $(".ftm-usd").html(`$${ftmUsd.toFixed(6)}`);
         });
         $.getJSON('https://api.paintswap.finance/supply', function(data) {
-          const mc = `$${parseFloat(data.circulating_supply_usd).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`
+          const mc = `$${parseFloat(data.circulating_supply_usd).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}`
           $(".mc").html(mc);
         });
       }
