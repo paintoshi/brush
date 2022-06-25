@@ -159,7 +159,7 @@
         return time
       }
       function checkPrice() {
-        $.getJSON('https://api.paintswap.finance/tokens/0x85dec8c4B2680793661bCA91a8F129607571863d', function(data) {
+        $.getJSON('https://api.paintswap.finance/v2/tokens/0x85dec8c4B2680793661bCA91a8F129607571863d', function(data) {
           const refreshed = `Last Updated: ${timeConverter(data.updated_at)}`;
           const brush = parseFloat(data.token.price);
           const ftm = parseFloat(data.token.price_FTM);
