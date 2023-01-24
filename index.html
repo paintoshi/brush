@@ -53,6 +53,7 @@
 
   .header {
     font-size: 50px;
+    height: 14vw;
   }
 
   #table {
@@ -81,6 +82,10 @@
       margin-right: 10px;
       color: #9dc9d6;
     }
+    .header {
+      height: 12vw;
+    }
+  }
 
   @media only screen and (min-width: 1200px) {
     .container > div {
@@ -99,19 +104,22 @@
       margin-right: 10px;
       color: #9dc9d6;
     }
+    .header {
+      height: 7vw;
+    }
   }
 </style>
 
 <body>
     <div class="container">
       <div>
-        <span class="header"><a href="https://paintswap.finance/" target="_blank">PaintSwap</a></span><br /><br />
+        <a href="https://paintswap.finance/" target="_blank"><img class="header" src="logo.png" alt="PaintSwap" /></a><br /><br />
         <span class="refreshed"></span><br /><br />
         <table id="table">
           <th id="table1"></th>
           <tr>
             <td style="text-align: right;">
-              <span class="medium">BRUSH / USD</span>
+              <span class="medium">USD / BRUSH</span>
             </td>
             <td style="text-align: left;">
               <span class="brush big"></span><br />
@@ -119,7 +127,7 @@
           </tr>
           <tr>
             <td style="text-align: right;">
-              <span class="medium">BRUSH / FTM</span>
+              <span class="medium">FTM / BRUSH</span>
             </td>
             <td style="text-align: left;">
               <span class="ftm big"></span><br />
@@ -127,7 +135,7 @@
           </tr>
           <tr>
             <td style="text-align: right;">
-              <span class="medium">FTM / USD</span>
+              <span class="medium">USD / FTM</span>
             </td>
             <td style="text-align: left;">
               <span class="ftm-usd big"></span><br />
