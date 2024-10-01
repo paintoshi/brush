@@ -15,9 +15,10 @@
   html, body, .container {
     height: 100%;
     background-color: black;
-    color: #a49ddc;
+    color: #209348;
     font-size: 16px;
     font-family: sans-serif;
+    margin: 0;
   }
   a {
     color: #58d668;
@@ -29,6 +30,7 @@
   .container {
       position: relative;
       text-align: center;
+      background: linear-gradient(to bottom, #d41bc457, #1dc94314);
   }
   .container > div {
       position: absolute;
@@ -40,25 +42,34 @@
   .big {
     font-size: 30px;
     line-height: 1.4;
-    margin-right: 10px;
-    color: #9dc9d6;
+    color: #d92eef;
   }
 
   .medium {
     font-size: 15px;
     line-height: 1.4;
     margin-right: 10px;
-    color: #9dc9d6;
+    color: #d92eef;
   }
 
   .header {
     font-size: 50px;
     height: 14vw;
+    margin-top: 16px;
+  }
+
+  .refreshed {
+    margin-top: 8px;
+    font-size: 12px;
   }
 
   #table {
-   border-collapse: collapse;
-   display: inline;
+    border: 2px solid #209348;
+    background-color: #2093481c;
+    border-radius: 16px;
+    padding: 16px;
+    display: inline-block;
+    margin-top: 32px;
   }
 
   #table td {
@@ -73,18 +84,17 @@
     .big {
       font-size: 35px;
       line-height: 1.3;
-      margin-right: 10px;
-      color: #9dc9d6;
     }
     .medium {
       font-size: 25px;
       line-height: 1.3;
-      margin-right: 10px;
-      color: #9dc9d6;
     }
     .header {
       height: 12vw;
     }
+    .refreshed {
+    font-size: 14px;
+  }
   }
 
   @media only screen and (min-width: 1200px) {
@@ -95,14 +105,11 @@
     .big {
       font-size: 40px;
       line-height: 1.5;
-      margin-right: 10px;
-      color: #9dc9d6;
     }
     .medium {
       font-size: 30px;
       line-height: 1.5;
-      margin-right: 10px;
-      color: #9dc9d6;
+      margin-right: 16px;
     }
     .header {
       height: 7vw;
@@ -118,11 +125,9 @@
 
 <body>
     <div class="container">
-      <div>
-        <a href="https://paintswap.finance/" target="_blank"><img class="header" src="logo.png" alt="PaintSwap" /></a><br /><br />
-        <span class="refreshed"></span><br /><br />
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <a href="https://paintswap.finance/" target="_blank"><img class="header" src="logo.png" alt="PaintSwap" /></a>
         <table id="table">
-          <th id="table1"></th>
           <tr>
             <td style="text-align: right;">
               <span class="medium">USD / BRUSH</span>
@@ -156,6 +161,7 @@
             </td>
           </tr>
         </table>
+        <span class="refreshed"></span>
       </div>
     </div>
 
