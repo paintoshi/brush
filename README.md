@@ -2,4 +2,4 @@
 Brush price widget
 
 ## Live
-https://paintoshi.github.io/brush/
+https://brush.paintoshi.dev
