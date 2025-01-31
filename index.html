@@ -189,8 +189,8 @@
           $(".ftm").html(ftm.toFixed(6));
           $(".ftm-usd").html(`$${ftmUsd.toFixed(6)}`);
         });
-        $.getJSON('https://api.paintswap.finance/supply', function(data) {
-          const mc = `$${parseFloat(data.circulating_supply_usd).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}`
+        $.getJSON('https://api.paintswap.finance/v2/stats', function(data) {
+          const mc = `$${parseFloat(data.brushStats.marketCapUsd).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}`
           $(".mc").html(mc);
         });
       }
