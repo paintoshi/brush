@@ -4,8 +4,8 @@
   <title>BRUSH Price</title>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <meta charset="UTF-8">
-  <meta name="description" content="PaintSwap Live Price Widget">
-  <meta name="keywords" content="paintswap,brush,ftm,amm">
+  <meta name="description" content="Paintswap Live Price Widget">
+  <meta name="keywords" content="paintswap, brush, s, price, supply, token, crypto, sonic">
   <meta name="author" content="Paintoshi">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="./favicon.png"/>
@@ -55,7 +55,7 @@
   .header {
     font-size: 50px;
     height: 14vw;
-    margin-top: 16px;
+    margin-top: 32px;
   }
 
   .refreshed {
@@ -126,7 +126,7 @@
 <body>
     <div class="container">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <a href="https://paintswap.finance/" target="_blank"><img class="header" src="logo.png" alt="PaintSwap" /></a>
+        <a href="https://paintswap.io/" target="_blank"><img class="header" src="logo.png" alt="Paintswap" /></a>
         <table id="table">
           <tr>
             <td style="text-align: right;">
@@ -138,7 +138,7 @@
           </tr>
           <tr>
             <td style="text-align: right;">
-              <span class="medium">FTM / BRUSH</span>
+              <span class="medium">S / BRUSH</span>
             </td>
             <td style="text-align: left;">
               <span class="ftm big"></span><br />
@@ -146,7 +146,7 @@
           </tr>
           <tr>
             <td style="text-align: right;">
-              <span class="medium">USD / FTM</span>
+              <span class="medium">USD / S</span>
             </td>
             <td style="text-align: left;">
               <span class="ftm-usd big"></span><br />
@@ -179,10 +179,10 @@
         return time
       }
       function checkPrice() {
-        $.getJSON('https://api.paintswap.finance/v2/tokens/0x85dec8c4B2680793661bCA91a8F129607571863d', function(data) {
+        $.getJSON('https://api.paintswap.finance/v2/tokens?chainId=146', function(data) {
           const refreshed = `Last Updated: ${timeConverter(data.updated_at)}`;
-          const brush = parseFloat(data.token.price);
-          const ftm = parseFloat(data.token.price_FTM);
+          const brush = parseFloat(data.tokens['0xe51ee9868c1f0d6cd968a8b8c8376dc2991bfe44'].price);
+          const ftm = parseFloat(data.tokens['0xe51ee9868c1f0d6cd968a8b8c8376dc2991bfe44'].price_FTM);
           const ftmUsd = ftm > 0 ? parseFloat(brush/ftm) : 0;
           $(".refreshed").html(refreshed);
           $(".brush").html(`$${brush.toFixed(6)}`);
